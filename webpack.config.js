@@ -17,9 +17,10 @@ module.exports = {
         filename: '[name].js'
     },
     debug: true,
-    devtool: 'cheap-source-map',
+    devtool: 'cheap-module-source-map',
     devServer: {
-        inline: true
+        inline: true,
+        historyApiFallback: true
     },
 
     module: {
