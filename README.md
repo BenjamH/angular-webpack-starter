@@ -5,7 +5,7 @@
 
 - `npm install typings -g`
 - `npm install`
-- `npm run dev`
+- `npm run webpack-dev-server`
 
 
 ### Must Read
