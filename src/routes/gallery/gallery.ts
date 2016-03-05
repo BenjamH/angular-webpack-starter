@@ -19,6 +19,9 @@ export class GalleryRouteComponent implements OnInit {
     }
 
     constructor(private photoService:PhotosService) {
+    }
 
+    goBack() {
+        window.history.back();
     }
 }

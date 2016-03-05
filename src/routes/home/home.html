@@ -1,8 +1,24 @@
 <div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-offset-desktop mdl-cell--1-offset-tablet">
-        <card [title]="'Welcome'"
-              [description]="'Welcome to the Angular 2 Starter Kit'"
-              [linkText]="'Get Started with Angular 2'"
+    <div class="mdl-cell mdl-cell--4-col">
+        <card [title]="'Profile'"
+              [description]="'progress, updates and insights'"
+              [linkText]="'insert_emoticon'"
+              [link]="'http://angular.io'">
+
+        </card>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col">
+        <card [title]="'Events'"
+              [description]="'Curated things to increase well-being'"
+              [linkText]="'hot_tub'"
+              [routerLink]="['Gallery']">
+
+        </card>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col">
+        <card [title]="'Groups'"
+              [description]="'Join others in the conversation'"
+              [linkText]="'face'"
               [link]="'http://angular.io'">
 
         </card>
