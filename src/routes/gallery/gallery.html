@@ -1,0 +1,13 @@
+<div class="mdl-grid">
+
+    <div class="mdl-cell--4-col" *ngFor="#photo of photos">
+        <div class="mdl-card mdl-shadow--2dp mdl-card--hover">
+            <div class="mdl-card__title">
+                {{photo.title}}
+            </div>
+            <div class="mdl-card__media">
+                <img src="{{photo.thumbnailUrl}}">
+            </div>
+        </div>
+    </div>
+</div>

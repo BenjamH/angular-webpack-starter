@@ -1,0 +1,11 @@
+@import "../../../node_modules/material-design-lite/src/variables";
+@import "../../../node_modules/material-design-lite/src/mixins";
+
+.mdl-card--hover {
+
+    margin: $padding;
+
+    &:hover {
+        @include shadow-8dp();
+    }
+}
