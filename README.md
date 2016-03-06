@@ -1,6 +1,8 @@
 ## Angular2 + Webpack Starter Kit
 
 
+### code snippet: app-shell.html, lines 1-40
+
 ### Install
 
 - `npm install typings -g`
