@@ -11,7 +11,7 @@ app.use(express.static(static_path))
         res.sendFile('index.html', {
             root: static_path
         });
-    }).listen(3000, function (err) {
+    }).listen(process.env.PORT || 3000, function (err) {
     if (err) { console.log(err) };
     console.log('Listening at localhost:3000');
 });
