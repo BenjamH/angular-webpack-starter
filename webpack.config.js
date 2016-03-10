@@ -10,7 +10,9 @@ var path = require('path');
 module.exports = {
     entry: {
         app: './src/app.ts',
-        vendor: './src/vendor.ts'
+        vendor: './src/vendor.ts',
+        'webpack-dev-server/client?http://localhost:3000',
+        'webpack/hot/only-dev-server'
     },
     output: {
         path: path.join(__dirname, 'dist'),
