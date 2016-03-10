@@ -26,7 +26,6 @@
     "postinstall": "npm run dist",
     "start": "node server.js",
     "webpack-dev-server": "NODE_ENV=development webpack-dev-server",
-//    "build": "NODE_ENV=production webpack",
     "typings": "typings"
   },
   "dependencies": {
