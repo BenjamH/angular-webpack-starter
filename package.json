@@ -21,10 +21,12 @@
     "webpack-dev-server": "^1.14.1"
   },
   "scripts": {
-    "postinstall": "webpack --config ./webpack-prod.config.js --progress --colors",
+    "build": "webpack -d --progress --colors --watch",
+    "dist": "webpack -p",
+    "postinstall": "npm run dist",
     "start": "node server.js",
     "webpack-dev-server": "NODE_ENV=development webpack-dev-server",
-    "build": "NODE_ENV=production webpack",
+//    "build": "NODE_ENV=production webpack",
     "typings": "typings"
   },
   "dependencies": {
