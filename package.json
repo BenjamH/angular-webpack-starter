@@ -23,7 +23,7 @@
   "scripts": {
     "build": "webpack -d --progress --colors --watch",
     "dist": "webpack -p",
-    "postinstall": "npm run dist",
+    "postinstall": "webpack --config ./webpack.config.js --progress --colors",
     "start": "node server.js",
     "webpack-dev-server": "NODE_ENV=development webpack-dev-server",
     "typings": "typings"
