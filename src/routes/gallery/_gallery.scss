@@ -10,6 +10,57 @@
     }
 }
 
+.mdl-card {
+    max-width: 15rem;
+}
+
+.mdl-card__name {
+    font-weight: bold;
+}
+
+.mdl-card__supporting-text {
+    font-size: .8rem;
+    span {
+        display: block;
+    }
+}
+
+.mdl-card__price-float--right, .mdl-card__commission-float--right {
+    display: inline-block;
+    float: right;
+}
+
+.mdl-checkbox-width--0 {
+    width: 0%;
+}
+
+.mdl-list {
+    font-size: 2em;
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+.mdl-card--horizontal-center {
+    text-align: center;
+}
+
+.mdl-card__media {
+    background-color: white;
+}
+
+.inactive {
+    color: black;
+    -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
 
 .fadeIn{
     animation-name: fadeIn;

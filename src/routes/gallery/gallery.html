@@ -1,20 +1,104 @@
 <div class="mdl-grid">
-    <div class="mdl-row">
-    </div>
-    <div class ="mdl-cell mdl-cell--4-col mdl-cell--4-offet-desktop mdl-cell--1-offset-tablet">
-        <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" (click)="goBack()">
-        Back
-    </button>
+
+    <div class="mdl-cell mdl-cell--4-col">
+        <menu [title]="advertiserTitle" [items]="advertisers"></menu>
+        <!--<menu [title]="designerTitle" [items]="designers"></menu>-->
     </div>
 
+    <div class="mdl-cell mdl-cell--4-col">
+        <form action="#" (ngSubmit)="getProducts(config)" #searchForm="ngForm" class="mdl-card--horizontal-center">
 
-    <div class="mdl-cell--4-col" *ngFor="#photo of photos">
-        <div class="mdl-card mdl-shadow--2dp mdl-card--hover fadeIn">
-            <div class="mdl-card__title">
-                {{photo.title}}
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="keywords" required [(ngModel)]="config.keywords">
+                {{diagnostic}}
+                {{config.keywords}}
+                <label class="mdl-textfield__label" for="keywords">
+                    Keywords...
+                </label>
             </div>
-            <div class="mdl-card__media">
-                <img src="{{photo.thumbnailUrl}}">
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <select class="mdl-textfield__input" id="advertisers"
+                    [(ngModel)]="config.advertisers" >
+                <option *ngFor="#advertiser of advertisers" [value]="advertiser">{{advertiser}}</option>
+            </select>
+            <!--<input class="mdl-textfield__input" type="text" id="advertisers" [(ngModel)]="config.advertisers">-->
+                <label class="mdl-textfield__label" for="advertisers">
+                    Advertisers...
+                </label>
+            </div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="designers" [(ngModel)]="config.designers">
+                <label class="mdl-textfield__label" for="designers">
+                    Designers...
+                </label>
+            </div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="categories" [(ngModel)]="config.categories">
+                <label class="mdl-textfield__label" for="categories">
+                    Categories...
+                </label>
+            </div>
+
+            <ul>
+                <!--<li *ngFor="#product of products | async">{{product.product_name}}</li>-->
+            </ul>
+
+            <input type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" [ngClass]="{hide: clicked}" value="Submit" (click)="getProducts()">
+            <div [ngClass]="{hide: !clicked}" class="mdl-spinner mdl-js-spinner is-active"></div>
+        </form>
+    </div>
+
+    <div class="mdl-cell mdl-cell--4-col mdl-card--horizontal-center">
+        <h2>Search Inputs</h2>
+        <ul class="demo-list-item mdl-list">
+            <li class="mdl-list__item">
+                Keywords:
+                <span class="mdl-list__item-primary-content">
+                    {{config.keywords}}
+                </span>
+            </li>
+            <li class="mdl-list__item">
+                Advertisers:
+                <span class="mdl-list__item-primary-content">
+                    {{config.advertisers}}
+                </span>
+            </li>
+            <li class="mdl-list__item">
+                Designers:
+                <span class="mdl-list__item-primary-content">
+                    {{config.designers}}
+                </span>
+            </li>
+            <li class="mdl-list__item">
+                Categories:
+                <span class="mdl-list__item-primary-content">
+                    {{config.categories}}
+                </span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdl-grid">
+        <!--<menu (clickIt)="getAdvertisers($event)" [title]="advertiserTitle" [items]="advertisers"></menu>-->
+        <div class="mdl-cell mdl-cell--2-col" *ngIf="product" *ngFor="#product of products">
+            <div class="mdl-card mdl-shadow--2dp mdl-card--hover fadeIn">
+                <div class="mdl-card__media">
+                    <img src="{{product.product_image}}" width="210" height="140" border="0" alt="{{product.product_name}}" />
+                </div>
+                <div class="mdl-card__supporting-text">
+                    <span class="mdl-card__name">{{product.product_name}}</span>
+                    <span class="mdl-card__designer">by: {{product.designer}}</span>
+                    <span class="mdl-card__advertiser">@{{product.advertiser}}</span>
+                <span class="mdl-card__price">Price:
+                    <span class="mdl-card__price-float--right">{{product.local_formatted_price_amount}}</span>
+                </span>
+                <span class="mdl-card__commission">est. comm.:
+                    <span class="mdl-card__price-float--right">{{product.local_formatted_commission_amount}}</span>
+                </span>
+                </div>
             </div>
         </div>
     </div>

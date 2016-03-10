@@ -1,7 +1,8 @@
 
 import {Component} from "angular2/core";
 import {CardComponent} from "../../components/card/card";
-import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
+import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from "angular2/router";
+require('./_home.scss');
 
 @Component({
     selector: 'home',
