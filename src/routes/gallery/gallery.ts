@@ -1,14 +1,15 @@
 
 import {Component, OnInit} from "angular2/core";
 import {MenuComponent} from "../../components/menu/menu";
-import {ProductsService} from "../../core/products.service.ts";
-import {AdvertisersService} from "../../core/advertisers.service.ts";
-import {DesignersService} from "../../core/designers.service.ts";
+import {CardComponent} from "../../components/card/card";
+import {ProductsService} from "../../core/products.service";
+import {AdvertisersService} from "../../core/advertisers.service";
+// ***Need to use top designers service***
+// import {DesignersService} from "../../core/designers.service.ts";
 import {Control} from "angular2/common";
 import {Observable} from "rxjs/Observable";
-import {NgClass} from 'angular2/common';
-import {NgForm} from 'angular2/common';
-import {SearchConfig} from '../../config/searchConfig.ts';
+import {SearchConfig} from '../../config/searchConfig';
+import {UppercasePlusPipe} from '../../core/uppercase-plus.pipe'
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/debounceTime';
@@ -19,31 +20,31 @@ require('./_gallery.scss');
 @Component({
     selector: 'gallery',
     template: require('./gallery.html'),
-    providers: [ProductsService, AdvertisersService, DesignersService],
-    directives: [MenuComponent],
+    providers: [ProductsService, AdvertisersService],
+    directives: [MenuComponent, CardComponent],
+    pipes: [UppercasePlusPipe]
 })
 export class GalleryRouteComponent implements OnInit {
-    productsSearch: Observable<Array<string>>;
-    products;
+    // ***for observable search***
+    // public productsSearch: Observable<Array<string>>;
+    private products;
     private advertisers;
-    private designers;
-    keywords = new Control();
-    advertiserTitle: string;
-    designerTitle: string;
-    config: SearchConfig;
-    clicked: boolean;
-    // config = new SearchConfig('a','a','a','a');
+    private error;
+    // private designers;
+    public keywords = new Control();
+    public advertiserTitle: string;
+    public designerTitle: string;
+    private config: SearchConfig;
+    private clicked: boolean;
 
 
     constructor(private productsService:ProductsService,
-                private advertisersService: AdvertisersService,
-                private designersService: DesignersService) {
-        this.productsSearch = this.keywords.valueChanges
-                        .debounceTime(400)
-                        .distinctUntilChanged()
-                        .switchMap(keywords => this.productsService.search(keywords));
-        this.advertiserTitle = "Advertisers";
-        this.designerTitle = "Designers";
+                private advertisersService: AdvertisersService) {
+        // ***for observable search***
+        // this.productsSearch = this.keywords.valueChanges
+        //                 .debounceTime(400)
+        //                 .distinctUntilChanged()
+        //                 .switchMap(keywords => this.productsService.search(keywords));
         this.config = new SearchConfig();
         this.clicked = false;
     }
@@ -52,10 +53,10 @@ export class GalleryRouteComponent implements OnInit {
             this.advertisersService.getAdvertisers()
                 .then(advertisers=> {
                     this.advertisers = advertisers;
-                    console.log(advertisers);
                 }, err=> {
                     console.log(err);
                 });
+            // ***need to use top designers feed***
             // this.designersService.getDesigners()
             //     .then(designers=> {
             //         this.designers = designers;
@@ -67,15 +68,15 @@ export class GalleryRouteComponent implements OnInit {
 
     getProducts () {
         this.clicked = true;
+        this.error = false;
+        this.products = null;
         let search = this.config;
         this.productsService.getProducts(search)
-            .then(products=>{
-                this.products = products;
+            .then(data=>{
+                data.products.length === 0? this.error = data.error : this.products = data.products;
+                // this.products = data.products;
                 this.clicked = false;
             })
-
     }
-
-    get diagnostic() { return JSON.stringify(this.config); }
 
 }

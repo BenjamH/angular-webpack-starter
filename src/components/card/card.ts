@@ -9,7 +9,7 @@ export class CardComponent {
     title:string;
 
     @Input()
-    description:string;
+    description;
 
     @Input()
     linkText:string;

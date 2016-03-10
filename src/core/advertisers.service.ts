@@ -1,14 +1,10 @@
-import {Http, Jsonp} from "angular2/http";
+import {Jsonp} from "angular2/http";
 import {Injectable} from "angular2/core";
 import {OAUTH_TOKEN} from "../config/local.ts";
 
 
 @Injectable()
 export class AdvertisersService {
-
-    // constructor(private http:Http) {
-    //
-    // }
     
     constructor(private jsonp:Jsonp) {
         
