@@ -67,7 +67,9 @@
     <div class="mdl-grid">
 
         <!--loading icon when searching-->
-        <div [ngClass]="{hide: !clicked}" class="mdl-progress mdl-js-progress mdl-progress__indeterminate center"></div>
+        <div [ngClass]="{hide: !clicked}" class="mdl-progress mdl-js-progress mdl-progress__indeterminate center">
+            <div class="progressbar bar bar1" style="width: 0%;"></div>
+        </div>
 
         <!--in case of no search results-->
         <div class="error" *ngIf="error">
