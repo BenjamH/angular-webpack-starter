@@ -51,6 +51,6 @@
     "sass-loader": "^3.1.2",
     "ts-loader": "^0.8.0",
     "typescript": "^1.7.5",
-    "webpack": "^1.12.13",
+    "webpack": "^1.12.13"
   }
 }
