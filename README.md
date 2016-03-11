@@ -3,6 +3,8 @@
 
 ## Angular2, Webpack, Material Lite (in process of refactoring)
 
+![Alt text](src/assets/img/img1.pngraw=true "Optional Title")
+
 ### Install
 
 - `npm install typings -g`
