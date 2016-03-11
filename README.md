@@ -3,7 +3,7 @@
 
 ## Angular2, Webpack, Material Lite (in process of refactoring)
 
-![Alt text](./src/assets/img/img1.pngraw=true "Optional Title")
+![img1](https://github.com/BenjamH/angular-webpack-starter/blob/screen-animations-stock-search/src/assets/img/img1.png)
 
 ### Install
 
