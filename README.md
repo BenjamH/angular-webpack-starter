@@ -1,7 +1,7 @@
-## Angular2 + Webpack Starter Kit
+## Stock Management with Screen Animations
 
 
-### code snippet: app-shell.html, lines 1-40
+## Angular2, Webpack, Material Lite (in process of refactoring)
 
 ### Install
 
@@ -10,7 +10,7 @@
 - `npm run webpack-dev-server`
 
 
-### Must Read
+### Technologies and Methodologies used
 
 - [Block__Element--Modifier](https://css-tricks.com/bem-101/)
 - [Angular 2](https://angular.io/)
