@@ -2,14 +2,14 @@
 import {Component, OnInit} from "angular2/core";
 import {MenuComponent} from "../../components/menu/menu";
 import {CardComponent} from "../../components/card/card";
-import {ProductsService} from "../../core/products.service";
+import {StocksService} from "../../core/stocks.service";
 import {AdvertisersService} from "../../core/advertisers.service";
 // ***Need to use top designers service***
 // import {DesignersService} from "../../core/designers.service.ts";
 import {Control} from "angular2/common";
 import {Observable} from "rxjs/Observable";
-import {SearchConfig} from '../../config/searchConfig';
-import {UppercasePlusPipe} from '../../core/uppercase-plus.pipe'
+// import {SearchConfig} from '../../config/searchConfig';
+// import {UppercasePlusPipe} from '../../core/uppercase-plus.pipe'
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/debounceTime';
@@ -20,32 +20,32 @@ require('./_gallery.scss');
 @Component({
     selector: 'gallery',
     template: require('./gallery.html'),
-    providers: [ProductsService, AdvertisersService],
-    directives: [MenuComponent, CardComponent],
-    pipes: [UppercasePlusPipe]
+    providers: [StocksService, AdvertisersService],
+    directives: [MenuComponent, CardComponent]
+    // pipes: [UppercasePlusPipe]
 })
 export class GalleryRouteComponent implements OnInit {
     // ***for observable search***
-    // public productsSearch: Observable<Array<string>>;
-    private products;
+    // public stocksSearch: Observable<Array<string>>;
+    private stocks;
     private advertisers;
-    private error;
+    private symbols;
     // private designers;
-    public keywords = new Control();
+    // public keywords = new Control();
     public advertiserTitle: string;
     public designerTitle: string;
-    private config: SearchConfig;
+    // private config: SearchConfig;
     private clicked: boolean;
 
 
-    constructor(private productsService:ProductsService,
+    constructor(private stocksService:StocksService,
                 private advertisersService: AdvertisersService) {
         // ***for observable search***
-        // this.productsSearch = this.keywords.valueChanges
+        // this.stocksSearch = this.keywords.valueChanges
         //                 .debounceTime(400)
         //                 .distinctUntilChanged()
-        //                 .switchMap(keywords => this.productsService.search(keywords));
-        this.config = new SearchConfig();
+        //                 .switchMap(keywords => this.stocksService.search(keywords));
+        // this.config = new SearchConfig();
         this.clicked = false;
     }
 
@@ -66,15 +66,12 @@ export class GalleryRouteComponent implements OnInit {
 
     }
 
-    getProducts () {
+    getStockQuotes (symbols: string) {
         this.clicked = true;
-        this.error = false;
-        this.products = null;
-        let search = this.config;
-        this.productsService.getProducts(search)
-            .then(data=>{
-                data.products.length === 0? this.error = data.error : this.products = data.products;
-                // this.products = data.products;
+        this.stocks = null;
+        this.stocksService.getStockQuotes(symbols)
+            .then(stocks=>{
+                this.stocks = stocks;
                 this.clicked = false;
             })
     }

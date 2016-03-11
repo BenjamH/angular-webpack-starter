@@ -12,7 +12,7 @@ import {MenuComponent} from "../../components/menu/menu";
 })
 @RouteConfig([
     { name: 'Home', path:'/', component: HomeComponent, useAsDefault: true},
-    { name: 'Gallery', path:'/gallery', component: GalleryRouteComponent}
+    { name: 'Stocks', path:'/stocks', component: GalleryRouteComponent}
 ])
 export class AppShell {
 

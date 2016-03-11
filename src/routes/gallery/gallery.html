@@ -2,65 +2,35 @@
 
     <!--advertiser button-->
     <div class="mdl-cell mdl-cell--4-col">
-        <menu [title]="'Advertisers Info'" [items]="advertisers"></menu>
+        <menu [title]="'Stock Info'" [items]="advertisers"></menu>
     </div>
 
     <!--search form-->
     <div class="mdl-cell mdl-cell--4-col">
-        <h5 class="mdl-card--horizontal-center">Search For Products</h5>
-        <form class="mdl-card--horizontal-center" action="#" (ngSubmit)="getProducts(config)" #searchForm="ngForm">
+        <h5 class="mdl-card--horizontal-center">Stock Search</h5>
+        <h6 class="mdl-card--horizontal-center">symbols</h6>
 
-            <!--keywords box-->
+        <form class="mdl-card--horizontal-center" action="#" (ngSubmit)="getStockQuotes(symbols)" #searchForm="ngForm">
+
+            <!--symbols box-->
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" id="keywords" [(ngModel)]="config.keywords">
-                <label class="mdl-textfield__label" for="keywords">
-                    Keywords...
-                </label>
-            </div>
-
-
-            <!--advertisers box-->
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <select class="mdl-textfield__input" id="advertisers"
-                    [(ngModel)]="config.advertisers" >
-                <option *ngFor="#advertiser of advertisers" [value]="advertiser">{{advertiser}}</option>
-            </select>
-                <label class="mdl-textfield__label" for="advertisers">
-                    Advertisers...
-                </label>
-            </div>
-
-            <!--designers box-->
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" id="designers" [(ngModel)]="config.designers">
-                <label class="mdl-textfield__label" for="designers">
-                    Designers...
-                </label>
-            </div>
-
-            <!--categories box-->
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" id="categories" [(ngModel)]="config.categories">
-                <label class="mdl-textfield__label" for="categories">
-                    Categories...
+                <input class="mdl-textfield__input" type="text" id="symbols" [(ngModel)]="symbols">
+                <label class="mdl-textfield__label" for="symbols">
+                    symbols..(ex. AAPL,IBM,GOOGL)
                 </label>
             </div>
 
             <!--form submit button-->
             <div class="search-button--float-right">
-                <input type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised material-icons"  [ngClass]="{hide: clicked}" value="search" (click)="getProducts()">
+                <input type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised material-icons"  [ngClass]="{hide: clicked}" value="search" (click)="getStockQuotes(symbols)">
             </div>
         </form>
     </div>
 
     <!--Search Combo Card-->
     <div class="mdl-cell mdl-cell--4-col">
-        <card [title]="'Search Combo'"
-              description="{{config.keywords | uppercasePlus}}
-                           {{config.advertisers | uppercasePlus}}
-                           {{config.designers | uppercasePlus}}
-                           {{config.categories | uppercase}}
-                           ">
+        <card [title]="'Stocks being searched for'"
+              description="{{symbols}}">
         </card>
     </div>
 
@@ -76,21 +46,22 @@
             {{error}}
         </div>
 
-        <!--rendering product cards-->
-        <div class="mdl-cell mdl-cell--2-col" *ngIf="product" *ngFor="#product of products">
+        <!--rendering stock cards-->
+        <div class="mdl-cell mdl-cell--4-col" *ngIf="stock" *ngFor="#stock of stocks">
             <div class="mdl-card mdl-shadow--2dp mdl-card--hover fadeIn">
-                <div class="mdl-card__media">
-                    <img src="{{product.product_image}}" width="210" height="140" border="0" alt="{{product.product_name}}" />
+                <div class="mdl-card__media center">
+                    {{stock.name}}
                 </div>
                 <div class="mdl-card__supporting-text">
-                    <span class="mdl-card__name">{{product.product_name}}</span>
-                    <span class="mdl-card__designer">by: {{product.designer}}</span>
-                    <span class="mdl-card__advertiser">@{{product.advertiser}}</span>
-                <span class="mdl-card__price">Price:
-                    <span class="mdl-card__price-float--right">{{product.local_formatted_price_amount}}</span>
+                    <span class="mdl-card__name">Name: {{stock.symbol}}</span>
+                    <span class="mdl-card__name">Change: {{stock.percentChange}}%</span>
+                    <span class="mdl-card__designer">Exchange: {{stock.exchange}}</span>
+                    <span class="mdl-card__advertiser">last Price: {{stock.lastPrice}}</span>
+                <span class="mdl-card__price">High:
+                    <span class="mdl-card__price-float--right">{{stock.high}}</span>
                 </span>
-                <span class="mdl-card__commission">est. comm.:
-                    <span class="mdl-card__price-float--right">{{product.local_formatted_commission_amount}}</span>
+                <span class="mdl-card__commission">Low:
+                    <span class="mdl-card__price-float--right">{{stock.low}}</span>
                 </span>
                 </div>
             </div>
