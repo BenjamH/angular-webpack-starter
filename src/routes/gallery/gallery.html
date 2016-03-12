@@ -14,7 +14,7 @@
 
             <!--symbols box-->
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" id="symbols" [(ngModel)]="symbols">
+                <input class="mdl-textfield__input" type="text" id="symbols" [(ngModel)]="symbols" (keyup)="switchToActive()">
                 <label class="mdl-textfield__label" for="symbols">
                     symbols..(ex. AAPL,IBM,GOOGL)
                 </label>
@@ -28,7 +28,7 @@
     </div>
 
     <!--Search Combo Card-->
-    <div class="mdl-cell mdl-cell--4-col">
+    <div class="mdl-cell mdl-cell--4-col hide animated" [ngClass]="{fadeInRight: symbols, fadeOutRight: !symbols, hide: !active}">
         <card [title]="'Stocks being searched for'"
               description="{{symbols}}">
         </card>

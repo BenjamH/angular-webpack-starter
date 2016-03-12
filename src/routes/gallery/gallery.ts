@@ -10,12 +10,9 @@ import {Control} from "angular2/common";
 import {Observable} from "rxjs/Observable";
 // import {SearchConfig} from '../../config/searchConfig';
 // import {UppercasePlusPipe} from '../../core/uppercase-plus.pipe'
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/switchMap';
+
 require('./_gallery.scss');
+require('../../animate.scss');
 
 @Component({
     selector: 'gallery',
@@ -30,6 +27,7 @@ export class GalleryRouteComponent implements OnInit {
     private stocks;
     private advertisers;
     private symbols;
+    private active;
     // private designers;
     // public keywords = new Control();
     public advertiserTitle: string;
@@ -74,6 +72,10 @@ export class GalleryRouteComponent implements OnInit {
                 this.stocks = stocks;
                 this.clicked = false;
             })
+    }
+    
+    switchToActive () {
+        this.active = true;
     }
 
 }
