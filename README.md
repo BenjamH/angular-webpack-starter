@@ -3,6 +3,8 @@
 
 ## Angular2, Webpack, Material Lite (in process of refactoring)
 
+![img1](https://github.com/BenjamH/angular-webpack-starter/blob/screen-animations-stock-search/src/assets/img/img3.png)
+
 ### Install
 
 - `npm install typings -g`
